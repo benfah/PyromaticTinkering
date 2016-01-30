@@ -11,7 +11,6 @@ import me.benfah.benfahsmod.BenfahsMod;
 import me.benfah.benfahsmod.Reference;
 import me.benfah.benfahsmod.items.ItemPyroGem;
 import me.benfah.benfahsmod.items.ItemUpgrade;
-import me.benfah.benfahsmod.items.ItemTest;
 import me.benfah.benfahsmod.items.pyro.axe.ItemPyroAxe;
 import me.benfah.benfahsmod.items.pyro.axe.ItemPyroAxeElectrolyzed;
 import me.benfah.benfahsmod.items.pyro.pick.ItemPyroPickaxe;
@@ -19,7 +18,6 @@ import me.benfah.benfahsmod.items.pyro.pick.ItemPyroPickaxeElectrolyzed;
 import me.benfah.benfahsmod.items.pyro.sword.ItemPyroSword;
 import me.benfah.benfahsmod.items.pyro.sword.ItemPyroSwordElectrolyzed;
 import me.benfah.benfahsmod.items.pyro.wand.ItemPyroWand;
-import me.benfah.benfahsmod.items.tut.ItemTutPickaxe;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.init.Blocks;
@@ -35,9 +33,7 @@ public class BenfahsItems {
 	
 	public static Item pyro_sword;
 	public static Item pyro_sword_electrolyzed;
-	
-	public static Set blockWandSet;
-	
+		
 	public static Item pyro_pickaxe;
 	public static Item pyro_pickaxe_electrolyzed;
 
@@ -49,13 +45,11 @@ public class BenfahsItems {
 	
 	public static Item pyro_wand;
 	
-	public static ToolMaterial pyro_toolmaterial = new EnumHelper().addToolMaterial("pyro_toolmaterial", 0, 2000, 40, 0, 0);
+	public static ToolMaterial pyro_toolmaterial = new EnumHelper().addToolMaterial("pyro_toolmaterial", 0, 2000, 10, 0, 0);
 	
-	public static Item tut_pickaxe;
 	
 	public static void init()
 	{
-		blockWandSet = Sets.newHashSet(new Block[] {Blocks.planks, Blocks.bookshelf, Blocks.log, Blocks.log2, Blocks.chest, Blocks.pumpkin, Blocks.lit_pumpkin}, new Block[] {Blocks.cobblestone, Blocks.double_stone_slab, Blocks.stone_slab, Blocks.stone, Blocks.sandstone, Blocks.mossy_cobblestone, Blocks.iron_ore, Blocks.iron_block, Blocks.coal_ore, Blocks.gold_block, Blocks.gold_ore, Blocks.diamond_ore, Blocks.diamond_block, Blocks.ice, Blocks.netherrack, Blocks.lapis_ore, Blocks.lapis_block, Blocks.redstone_ore, Blocks.lit_redstone_ore, Blocks.rail, Blocks.detector_rail, Blocks.golden_rail, Blocks.activator_rail});
 		pyro_gem = new ItemPyroGem().setUnlocalizedName("pyro_gem").setCreativeTab(BenfahsMod.tabBenfah);
 		pyro_sword = new ItemPyroSword(pyro_toolmaterial).setCreativeTab(BenfahsMod.tabBenfah);
 		pyro_sword_electrolyzed = new ItemPyroSwordElectrolyzed(pyro_toolmaterial).setCreativeTab(BenfahsMod.tabBenfah);
@@ -64,7 +58,6 @@ public class BenfahsItems {
 		pyro_pickaxe_electrolyzed = new ItemPyroPickaxeElectrolyzed(pyro_toolmaterial).setCreativeTab(BenfahsMod.tabBenfah);
 		pyro_axe = new ItemPyroAxe(pyro_toolmaterial).setCreativeTab(BenfahsMod.tabBenfah);
 		pyro_axe_electrolyzed = new ItemPyroAxeElectrolyzed(pyro_toolmaterial).setCreativeTab(BenfahsMod.tabBenfah);
-		tut_pickaxe = new ItemTutPickaxe(pyro_toolmaterial).setCreativeTab(BenfahsMod.tabBenfah);
 		pyro_wand = new ItemPyroWand(pyro_toolmaterial);
 		
 		
@@ -73,7 +66,6 @@ public class BenfahsItems {
 	
 	public static void register()
 	{
-		GameRegistry.registerItem(tut_pickaxe, tut_pickaxe.getUnlocalizedName().substring(5));
 		GameRegistry.registerItem(pyro_wand, pyro_wand.getUnlocalizedName().substring(5));
 		GameRegistry.registerItem(pyro_pickaxe, pyro_pickaxe.getUnlocalizedName().substring(5));
 		GameRegistry.registerItem(pyro_sword_electrolyzed, pyro_sword_electrolyzed.getUnlocalizedName().substring(5));
