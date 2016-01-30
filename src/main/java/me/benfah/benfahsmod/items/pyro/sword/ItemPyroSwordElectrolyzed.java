@@ -32,6 +32,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraftforge.client.IItemRenderer;
 import me.benfah.benfahsmod.Reference;
+import me.benfah.benfahsmod.util.NBTHelper;
 import cofh.api.energy.IEnergyContainerItem;
 import com.google.common.collect.Multimap;
 
@@ -145,9 +146,8 @@ public class ItemPyroSwordElectrolyzed extends ItemSword implements IEnergyConta
     {
 		
 		
-		if(stack.stackTagCompound != null)
-		{
-			if(stack.stackTagCompound.getInteger("Energy") >= 400)
+		
+			if(NBTHelper.getInteger("Energy", stack) >= 400)
 			{
 				
 				Collection<AttributeModifier> col = stack.getAttributeModifiers().get(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName());
@@ -183,18 +183,16 @@ public class ItemPyroSwordElectrolyzed extends ItemSword implements IEnergyConta
 									((Entity)o).motionY = 0.40000000596046448D;
 								}
         			}
-					stack.stackTagCompound.setInteger("Energy", stack.stackTagCompound.getInteger("Energy")-400*list.size());
+					NBTHelper.setInteger("Energy",stack, NBTHelper.getInteger("Energy", stack)-400*list.size());
         			return true;
 				}
 				else
-					stack.stackTagCompound.setInteger("Energy", stack.stackTagCompound.getInteger("Energy")-400);
+					NBTHelper.setInteger("Energy",stack, NBTHelper.getInteger("Energy", stack)-400);
 
 			}
 			else
 				return true;
-		}
-		else
-			return true;
+		
 		
 		return false;
     }

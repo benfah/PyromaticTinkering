@@ -1,0 +1,36 @@
+package me.benfah.benfahsmod.util;
+
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+
+public class NBTHelper {
+
+	
+	public float getFloat(String field,ItemStack stack)
+	{
+		if(stack.hasTagCompound())
+		{
+			return stack.stackTagCompound.getFloat(field);
+		}
+		return 0.0F;
+	}
+	
+	public double getDouble(String field,ItemStack stack)
+	{
+		if(stack.hasTagCompound())
+		{
+			return stack.stackTagCompound.getDouble(field);
+		}
+		return 0.0F;
+	}
+	
+	public boolean getBoolean(String field,ItemStack stack)
+	{
+		if(stack.hasTagCompound())
+		{
+			return stack.stackTagCompound.getBoolean(field);
+		}
+		return 0.0F;
+	}
+	
+}

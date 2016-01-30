@@ -42,7 +42,7 @@ public class BenfahEventHandler {
 			if(GuiScreen.isShiftKeyDown())
 			{
 				e.toolTip.remove(2);
-				e.toolTip.remove(5);	
+				e.toolTip.remove(4);	
 				e.toolTip.add(writeOnTooltip("Tier", EnumChatFormatting.GOLD, "1"));
 				e.toolTip.add(writeOnTooltip("Speed", EnumChatFormatting.GREEN, e.itemStack.stackTagCompound == null ? "1.0" : e.itemStack.stackTagCompound.getInteger("miningspeed")) + ".0");
 				if(e.itemStack.getItem() instanceof ItemPyroPickaxeElectrolyzed)

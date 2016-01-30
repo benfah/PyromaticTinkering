@@ -26,7 +26,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.IIcon;
@@ -160,7 +159,7 @@ public class ItemPyroSword extends ItemSword{
 		
 				if(modifier.getAmount() >= 14)
 				{
-			entity.setFire(20);
+				entity.setFire(20);
         AxisAlignedBB box = AxisAlignedBB.getBoundingBox(entity.posX, entity.posY, entity.posZ, entity.posX + 1.0D, entity.posY + 1.0D, entity.posZ + 1.0D).expand(1.0D, 1.0D, 1.0D);
         List list = entityplayer.worldObj.getEntitiesWithinAABBExcludingEntity(entityplayer, box);
         			for (Object o : list)

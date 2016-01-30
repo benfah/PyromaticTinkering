@@ -65,7 +65,7 @@ public class BenfahsItems {
 		pyro_axe = new ItemPyroAxe(pyro_toolmaterial).setCreativeTab(BenfahsMod.tabBenfah);
 		pyro_axe_electrolyzed = new ItemPyroAxeElectrolyzed(pyro_toolmaterial).setCreativeTab(BenfahsMod.tabBenfah);
 		tut_pickaxe = new ItemTutPickaxe(pyro_toolmaterial).setCreativeTab(BenfahsMod.tabBenfah);
-		pyro_wand = new ItemPyroWand(0F, pyro_toolmaterial, blockWandSet);
+		pyro_wand = new ItemPyroWand(pyro_toolmaterial);
 		
 		
 	}

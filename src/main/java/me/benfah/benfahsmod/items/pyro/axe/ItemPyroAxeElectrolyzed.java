@@ -1,16 +1,12 @@
 package me.benfah.benfahsmod.items.pyro.axe;
 
 import cofh.api.energy.IEnergyContainerItem;
-import scala.reflect.internal.Trees.Super;
-import me.benfah.benfahsmod.BenfahsMod;
-import me.benfah.benfahsmod.Reference;
+import me.benfah.benfahsmod.util.NBTHelper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeHooks;
 
 public class ItemPyroAxeElectrolyzed extends ItemPyroAxe implements IEnergyContainerItem{
 
@@ -51,16 +47,15 @@ public class ItemPyroAxeElectrolyzed extends ItemPyroAxe implements IEnergyConta
 	public float getDigSpeed(ItemStack stack, Block block, int meta) {
 		
 		
-		if(stack.stackTagCompound != null)
-		{
-		if(stack.stackTagCompound.getInteger("Energy") >= 400)
+		
+		if(NBTHelper.getInteger("Energy", stack) >= 400)
 		{
 			System.out.println("DAKNFEIG?)V");
 
 			return super.getDigSpeed(stack, block, meta);
 		}
-		}
-		return 1.0F;
+		
+		return 0.5F;
 	}
 	
 
@@ -68,8 +63,8 @@ public class ItemPyroAxeElectrolyzed extends ItemPyroAxe implements IEnergyConta
 	public boolean onBlockDestroyed(ItemStack stack, World world, Block block, int x,
 			int y, int z, EntityLivingBase blockbreaker) {
 		
-		if(stack.stackTagCompound != null)
-		if(stack.stackTagCompound.getInteger("Energy") >= 400)
+		
+		if(NBTHelper.getInteger("Energy", stack) >= 400)
 		{
 			
 			stack.stackTagCompound.setInteger("Energy", stack.stackTagCompound.getInteger("Energy") - 400);

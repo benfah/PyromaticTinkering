@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import me.benfah.benfahsmod.Reference;
+import me.benfah.benfahsmod.util.NBTHelper;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
@@ -42,15 +43,10 @@ public class ItemPyroPickaxe extends ItemPickaxe{
 		
 		if (ForgeHooks.isToolEffective(stack, block, meta) == true)
         {
-			if(stack.hasTagCompound())
-			{
-				
-		         	System.out.println(stack.getTagCompound().getFloat("miningspeed"));
-					return stack.getTagCompound().getFloat("miningspeed");
+			return NBTHelper.getFloat("miningspeed", stack) != 0.0F ? NBTHelper.getFloat("miningspeed", stack) : 1.0F;
 		        
-			}
-			else
-			return efficiencyOnProperMaterial;
+			
+			
 
         }
 		else

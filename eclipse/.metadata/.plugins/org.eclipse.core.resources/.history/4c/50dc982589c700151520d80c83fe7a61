@@ -1,0 +1,20 @@
+package me.benfah.benfahsmod.util;
+
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+
+public class NBTHelper {
+
+	
+	public float getFloat(String field,ItemStack stack)
+	{
+		if(stack.hasTagCompound())
+		{
+			return stack.stackTagCompound.getFloat(field);
+		}
+		return 0.0F;
+	}
+	
+	
+	
+}
