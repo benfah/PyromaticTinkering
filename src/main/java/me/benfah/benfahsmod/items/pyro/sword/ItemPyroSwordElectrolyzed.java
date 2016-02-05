@@ -39,12 +39,10 @@ import com.google.common.collect.Multimap;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemPyroSwordElectrolyzed extends ItemSword implements IEnergyContainerItem{
+public class ItemPyroSwordElectrolyzed extends ItemPyroSword implements IEnergyContainerItem{
 	
 
-	private IIcon sword;
-	private IIcon overlay;
-	private IIcon fire;
+	
 
 	protected int maxExtract = 50000 * 50;
 	protected int maxReceive = 50000;
@@ -76,28 +74,7 @@ public class ItemPyroSwordElectrolyzed extends ItemSword implements IEnergyConta
 	
 
 
-	@Override
-	public IIcon getIcon(ItemStack stack, int pass)
-    {
-		Collection<AttributeModifier> col = stack.getAttributeModifiers().get(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName());
-		AttributeModifier modifier = col.iterator().next();
-		
-		if(pass == 0)
-		{
-			
-			return sword;
-			
-		}
-		/*else
-		if(pass == 1 && modifier.getAmount() >= 14D)
-		{
-			
-			return overlay;
-
-		}
-		*/
-		return sword;
-    }
+	
 		
 		
 	
@@ -122,15 +99,7 @@ public class ItemPyroSwordElectrolyzed extends ItemSword implements IEnergyConta
 		return true;
 	}
 	
-	@Override
-	public void registerIcons(IIconRegister i) {
-		
-		this.sword = i.registerIcon(Reference.MOD_ID + ":electrolyzed_pyro_sword");	
-		this.overlay = i.registerIcon(Reference.MOD_ID + ":" + "overlay_upgrade1");
-		this.fire = i.registerIcon(Reference.MOD_ID + ":" + "fire_animation");
-		textures.put("overlay_upgrade1", overlay);
-		
-	}
+	
 	@Override
 	public boolean hitEntity(ItemStack stack, EntityLivingBase attacker, EntityLivingBase target) {
 		System.out.println("test");
@@ -240,8 +209,13 @@ public class ItemPyroSwordElectrolyzed extends ItemSword implements IEnergyConta
 	}
 
 
-
-
+	
+	@Override
+	public void registerIcons(IIconRegister i) {
+		super.registerIcons(i);
+		sword = i.registerIcon(Reference.MOD_ID + ":electrolyzed_pyro_sword");
+		
+	}
 
 	@Override
 	public int receiveEnergy(ItemStack container, int maxReceive, boolean simulate) {
@@ -258,5 +232,7 @@ public class ItemPyroSwordElectrolyzed extends ItemSword implements IEnergyConta
 		}
 		return energyReceived;
 	}
+	
+	
 	
 }

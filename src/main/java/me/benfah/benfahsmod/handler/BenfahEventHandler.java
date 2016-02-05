@@ -14,6 +14,8 @@ import me.benfah.benfahsmod.items.pyro.pick.ItemPyroPickaxe;
 import me.benfah.benfahsmod.items.pyro.pick.ItemPyroPickaxeElectrolyzed;
 import me.benfah.benfahsmod.items.pyro.sword.ItemPyroSword;
 import me.benfah.benfahsmod.items.pyro.sword.ItemPyroSwordElectrolyzed;
+import me.benfah.benfahsmod.items.pyro.wand.ItemPyroTool;
+import me.benfah.benfahsmod.items.pyro.wand.ItemPyroToolElectrolyzed;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -34,6 +36,26 @@ public class BenfahEventHandler {
 	@SubscribeEvent
 	public void tooltip(ItemTooltipEvent e)
 	{
+		
+		if(e.itemStack.getItem() instanceof ItemPyroTool)
+		{
+			e.toolTip.add("An all in One Tool!");
+			e.toolTip.add("Make it faster if you upgrade it with an Orb of Sharpness.");
+			e.toolTip.add(EnumChatFormatting.GRAY + "Press" + EnumChatFormatting.ITALIC + EnumChatFormatting.YELLOW + " LSHIFT " + EnumChatFormatting.GRAY + "for more information.");
+			if(GuiScreen.isShiftKeyDown())
+			{
+				e.toolTip.remove(2);
+				e.toolTip.remove(4);	
+				e.toolTip.add(writeOnTooltip("Tier", EnumChatFormatting.GOLD, "1"));
+				e.toolTip.add(writeOnTooltip("Speed", EnumChatFormatting.GREEN, e.itemStack.stackTagCompound == null ? "1.0" : e.itemStack.stackTagCompound.getInteger("miningspeed")) + ".0");
+				if(e.itemStack.getItem() instanceof ItemPyroToolElectrolyzed)
+				{
+					e.toolTip.add(writeOnTooltip("Energy", EnumChatFormatting.AQUA, e.itemStack.stackTagCompound == null ? "0/3200000 RF" : e.itemStack.stackTagCompound.getInteger("Energy") + "/3200000 RF"));
+				}	
+			}
+			else
+			e.toolTip.remove(2);
+		}
 		if(e.itemStack.getItem() instanceof ItemPyroPickaxe || e.itemStack.getItem() instanceof ItemPyroPickaxeElectrolyzed)
 		{
 			e.toolTip.add("A fast pickaxe, if you upgrade it with an anvil");

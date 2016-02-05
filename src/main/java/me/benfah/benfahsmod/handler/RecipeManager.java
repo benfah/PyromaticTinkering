@@ -3,12 +3,12 @@ package me.benfah.benfahsmod.handler;
 import java.util.Collection;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import me.benfah.benfahsmod.init.BenfahsItems;
 import me.benfah.benfahsmod.items.ItemUpgrade;
 import me.benfah.benfahsmod.items.pyro.axe.ItemPyroAxe;
 import me.benfah.benfahsmod.items.pyro.pick.ItemPyroPickaxe;
 import me.benfah.benfahsmod.items.pyro.sword.ItemPyroSword;
 import me.benfah.benfahsmod.items.pyro.sword.ItemPyroSwordElectrolyzed;
+import me.benfah.benfahsmod.items.pyro.wand.ItemPyroTool;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.item.ItemStack;
@@ -40,55 +40,53 @@ public class RecipeManager {
 	    
 	    if(evt.left.getItem() instanceof ItemPyroSword || evt.left.getItem() instanceof ItemPyroSwordElectrolyzed && evt.right.getItem() instanceof ItemUpgrade)
 	    {
-	    	
-	    	
 	    	handleUpgrade(evt);
 	    }
 	    
 	    if(evt.left.getItem() instanceof ItemPyroPickaxe && evt.right.getItem() instanceof ItemUpgrade)
 	    {
-	    	
 	    	handlePickaxeUpgrade(evt);
-	    	
-	    	
-	    	
 	    }
 	    if(evt.left.getItem() instanceof ItemPyroAxe)
 	    {
-	    	
-	    	
-	    	
 	    	handleAxeUpgrade(evt);
-	    	
-	    	
-	    	
-	    	
-	    	
-	    	
-	    	
-	    	
-	    	
-	    	
-	    	
-	    	
-	    	
-	    	
-	    	
-	    	
-	    	
 	    }
-	}
+	    if(evt.left.getItem() instanceof ItemPyroTool)
+	    {
+	    	handleToolUpgrade(evt);
+	    }
+	 }
 	
+ 	private void handleToolUpgrade(AnvilUpdateEvent evt)
+ 	{
+ 		ItemStack tool = evt.left.copy();
+
+        
+        
+		
+		
+		NBTTagCompound tagCompound = (NBTTagCompound) (tool.stackTagCompound == null ? new NBTTagCompound() : tool.stackTagCompound.copy());
+		
+		
+		tagCompound.setInteger("miningspeed", tagCompound.hasKey("miningspeed") ? tagCompound.getInteger("miningspeed") + (5 * evt.right.stackSize) : 1 + 5);
+		
+		tool.setTagCompound(tagCompound);
+		
+        evt.output = tool;
+        
+        evt.cost = 3;
+        return;
+ 		
+ 		
+ 		
+ 		
+ 		
+ 		
+ 	}
 	
 	private void handleAxeUpgrade(AnvilUpdateEvent evt)
 	{
-		
-		
-		
 		ItemStack axe = evt.left.copy();
-	 	
-		
-		
 		System.out.println("hi");
 
         

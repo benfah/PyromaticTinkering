@@ -43,15 +43,10 @@ public class ItemPyroPickaxe extends ItemPickaxe{
 		
 		if (ForgeHooks.isToolEffective(stack, block, meta) == true)
         {
-			return NBTHelper.getFloat("miningspeed", stack) != 0.0F ? NBTHelper.getFloat("miningspeed", stack) : 1.0F;
-		        
-			
-			
-
+			return NBTHelper.getFloat("miningspeed", stack) +1F;
         }
-		else
 		return 1.0F;
-		}
+	}
 	
 	
 	

@@ -1,6 +1,8 @@
 package me.benfah.benfahsmod;
 
+import me.benfah.benfahsmod.blocks.tileentity.TileEntityTinkerTable;
 import me.benfah.benfahsmod.handler.BenfahEventHandler;
+import me.benfah.benfahsmod.handler.GUIHandler;
 import me.benfah.benfahsmod.handler.RecipeManager;
 import me.benfah.benfahsmod.init.BenfahsItems;
 import me.benfah.benfahsmod.proxy.CommonProxy;
@@ -15,9 +17,11 @@ import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 
@@ -25,13 +29,19 @@ import cpw.mods.fml.common.registry.GameRegistry;
 public class BenfahsMod {
 	
 	
+	public static final int tableID = 0;
+	
 	@SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.SERVER_PROXY_CLASS)
 	public static CommonProxy proxy;
 	
+	@Instance(Reference.MOD_ID)
+	public static BenfahsMod instance;
 	
 	
 	public static final BenfahTab tabBenfah = new BenfahTab("tabBenfah");
 	BenfahEventHandler handler = new BenfahEventHandler();
+	
+	
 	
 	
 	@EventHandler
@@ -42,8 +52,8 @@ public class BenfahsMod {
 		MinecraftForge.EVENT_BUS.register(new RecipeManager());
 
 		FMLCommonHandler.instance().bus().register(new RecipeManager());
-	BenfahsItems.init();
-	BenfahsItems.register();
+		BenfahsItems.init();
+		BenfahsItems.register();
 	
 	
 	}
@@ -51,6 +61,7 @@ public class BenfahsMod {
 	@EventHandler
 	public void init(FMLInitializationEvent e)
 	{
+		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GUIHandler());
 		ItemStack obsidian = new ItemStack(Blocks.obsidian);
 		ItemStack redstone = new ItemStack(Items.redstone);
 		ItemStack glass = new ItemStack(Blocks.glass_pane);
@@ -68,7 +79,8 @@ public class BenfahsMod {
 		GameRegistry.addRecipe(sharp_orb, "GPG", "PSP", "GPG", 'G', gold, 'P', pyro_gem, 'S', slime_ball);
 		GameRegistry.addRecipe(pyro_sword, " G "," G ", " R ", 'G', pyro_gem, 'R', blaze_rod);
 		proxy.registerRenders();
-		
+        GameRegistry.registerTileEntity(TileEntityTinkerTable.class, "tileEntityTinkerTable");
+
 		
 			GameRegistry.addRecipe(pyro_sword_electrolyzed, "RGR", "GEG", "COC", 'R', redstone, 'G', pyro_gem, 'E', pyro_sword, 'O', sharp_orb, 'C', new ItemStack(Items.diamond));
 			

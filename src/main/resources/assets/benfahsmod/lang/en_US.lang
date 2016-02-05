@@ -12,3 +12,5 @@ text.pyro_sword.l1.name=Just a sword... But a pyromatic one!
 item.pyro_sword_t2.name=Pyromatic Sword
 item.pyro_gem.name=Pyromatic Gem
 item.pyro_upgrade.name=Orb of Intelligence
+
+item.pyro_tool.name=Pyromatic Tool

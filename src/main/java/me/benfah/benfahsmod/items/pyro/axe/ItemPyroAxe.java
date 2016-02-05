@@ -33,9 +33,8 @@ public class ItemPyroAxe extends ItemAxe{
 		
 		if(ForgeHooks.isToolEffective(stack,block, meta))
 		{
-		return NBTHelper.getInteger("miningspeed", stack) != 0.0F ? NBTHelper.getInteger("miningspeed", stack) : efficiencyOnProperMaterial / 8;
+		return NBTHelper.getInteger("miningspeed", stack) + 1;
 		}
-		else
 		return 1.0F;
 		
 	}

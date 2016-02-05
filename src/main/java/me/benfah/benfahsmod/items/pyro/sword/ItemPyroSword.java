@@ -42,14 +42,12 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class ItemPyroSword extends ItemSword{
 	
 
-	private IIcon sword;
-	private IIcon overlay;
-	private IIcon fire;
-
-	protected int maxExtract = 50000 * 50;
-	protected int maxReceive = 50000;
-
-	protected int capacity = 3200000;
+	public IIcon sword;
+	public IIcon overlay;
+	public IIcon fire;
+	public IIcon blank;
+	
+	
 	
 	
 	public ItemPyroSword(ToolMaterial material) {
@@ -102,7 +100,7 @@ public class ItemPyroSword extends ItemSword{
 		this.sword = i.registerIcon(Reference.MOD_ID + ":pyro_sword");	
 		this.overlay = i.registerIcon(Reference.MOD_ID + ":" + "overlay_upgrade1");
 		this.fire = i.registerIcon(Reference.MOD_ID + ":" + "fire_animation");
-		textures.put("overlay_upgrade1", overlay);
+		this.blank = i.registerIcon(Reference.MOD_ID + ":blank");
 		
 	}
 	
@@ -134,7 +132,7 @@ public class ItemPyroSword extends ItemSword{
 			
 		}
 		
-		return sword;
+		return blank;
     }
 	
 	@Override
@@ -147,7 +145,7 @@ public class ItemPyroSword extends ItemSword{
 	}
 	
 	
-	@Override
+	/*@Override
     public boolean onLeftClickEntity(ItemStack stack, EntityPlayer entityplayer, Entity entity)
     {
 		
@@ -193,17 +191,26 @@ public class ItemPyroSword extends ItemSword{
 
 		return false;
     }
-
+	*/
 
 
 
 
 	
+	@Override
+	public float func_150931_i() {
+		System.out.println(super.func_150931_i());
+		return 1000F;
+	}
 
 
 
-
-
+	@Override
+	public Multimap getAttributeModifiers(ItemStack stack) {
+		Multimap multimap = super.getAttributeModifiers(stack);
+        multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(field_111210_e, "Weapon modifier", (double)25, 0));
+		return super.getAttributeModifiers(stack);
+	}
 	
 
 	
