@@ -1,16 +1,33 @@
-item.coord_cache.name=Coordinate Cache
-tile.coord_teleporter.name=Coordinate Teleporter
-
 itemGroup.tabBenfah=benfah's Tab
 
-item.pyro_sword.name=Pyromatic Sword
-item.pyro_sword_electrolyzed.name=Electrolyzed Pyromatic Sword
+item.pyro_sword.name=§6Pyromatic Sword
+item.pyro_sword_electrolyzed.name=§6Electrolyzed Pyromatic Sword
 
-item.pyro_pickaxe.name=Pyromatic Pickaxe
+item.pyro_pickaxe.name=§6Pyromatic Pickaxe
+item.pyro_pickaxe_electrolyzed.name=§6Electrolyzed Pyromatic Pickaxe
 
-text.pyro_sword.l1.name=Just a sword... But a pyromatic one!
-item.pyro_sword_t2.name=Pyromatic Sword
+
 item.pyro_gem.name=Pyromatic Gem
 item.pyro_upgrade.name=Orb of Intelligence
 
-item.pyro_tool.name=Pyromatic Tool
+item.pyro_tool.name=§6Pyromatic Tool
+item.pyro_tool_electrolyzed.name=§6Electrolyzed Pyromatic Tool
+
+item.pyro_axe.name=§6Pyromatic Axe
+item.pyro_axe_electrolyzed.name=§6Electrolyzed Pyromatic Axe
+
+
+item.pyro_sword_detailed_line1.name=Just a sword, but a pyromatic one!
+item.pyro_sword_detailed_line2.name=Put it in an anvil with an Orb of Sharpness.
+
+item.pyro_tool_detailed_line1.name=An all in One Tool!
+item.pyro_tool_detailed_line2.name=Put it in an anvil with an Orb of Sharpness.
+
+item.pyro_pickaxe_detailed_line1.name=A fast pickaxe.
+item.pyro_pickaxe_detailed_line2.name=Put it in an anvil with an Orb of Sharpness.
+
+item.pyro_axe_detailed_line1.name=Chop trees faster with the Pyromatic Axe!
+item.pyro_axe_detailed_line2.name=Put it in an anvil with an Orb of Sharpness.
+
+tile.tinker_table.name=Tinker Table (WIP)
+

@@ -1,6 +1,7 @@
 package me.benfah.benfahsmod.items.pyro.pick;
 
 import cofh.api.energy.IEnergyContainerItem;
+import me.benfah.benfahsmod.Reference;
 import me.benfah.benfahsmod.util.NBTHelper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
@@ -25,41 +26,14 @@ public class ItemPyroPickaxeElectrolyzed extends ItemPyroPickaxe implements IEne
 	
 	@Override
 	public boolean showDurabilityBar(ItemStack stack) {
-		return !(getEnergyStored(stack) == getMaxEnergyStored(stack));
+		return true;
 	}
-	
 	@Override
 	public double getDurabilityForDisplay(ItemStack stack) {
 		return 1D - ((double)getEnergyStored(stack) / (double)getMaxEnergyStored(stack));
 	}
 
-	@Override
-	public int extractEnergy(ItemStack container, int maxExtract, boolean simulate) {
-
-		if (container.stackTagCompound == null || !container.stackTagCompound.hasKey("Energy")) {
-			return 0;
-		}
-		int energy = container.stackTagCompound.getInteger("Energy");
-		int energyExtracted = Math.min(energy, Math.min(this.maxExtract, maxExtract));
-
-		if (!simulate) {
-			energy -= energyExtracted;
-			container.stackTagCompound.setInteger("Energy", energy);
-		}
-		return energyExtracted;
-	}
-
-
-
-
-
-	@Override
-	public int getEnergyStored(ItemStack container) {
-		if (container.stackTagCompound == null || !container.stackTagCompound.hasKey("Energy")) {
-			return 0;
-		}
-		return container.stackTagCompound.getInteger("Energy");
-	}
+	
 	
 	@Override
 	public float getDigSpeed(ItemStack stack, Block block, int meta) {
@@ -95,14 +69,43 @@ public class ItemPyroPickaxeElectrolyzed extends ItemPyroPickaxe implements IEne
 
 
 	@Override
-	public int getMaxEnergyStored(ItemStack arg0) {
-		
-		return capacity;
+	public int extractEnergy(ItemStack container, int maxExtract, boolean simulate) {
+
+		if (container.stackTagCompound == null || !container.stackTagCompound.hasKey("Energy")) {
+			return 0;
+		}
+		int energy = container.stackTagCompound.getInteger("Energy");
+		int energyExtracted = Math.min(energy, Math.min(Reference.MAX_EXTRACT_PYRO, maxExtract));
+
+		if (!simulate) {
+			energy -= energyExtracted;
+			container.stackTagCompound.setInteger("Energy", energy);
+		}
+		return energyExtracted;
 	}
 
 
 
 
+
+	@Override
+	public int getEnergyStored(ItemStack container) {
+		if (container.stackTagCompound == null || !container.stackTagCompound.hasKey("Energy")) {
+			return 0;
+		}
+		return container.stackTagCompound.getInteger("Energy");
+	}
+
+	
+
+
+
+	@Override
+	public int getMaxEnergyStored(ItemStack arg0) {
+		
+		return Reference.CAPACITY_PYRO;
+		
+	}
 
 	@Override
 	public int receiveEnergy(ItemStack container, int maxReceive, boolean simulate) {
@@ -111,7 +114,7 @@ public class ItemPyroPickaxeElectrolyzed extends ItemPyroPickaxe implements IEne
 			container.stackTagCompound = new NBTTagCompound();
 		}
 		int energy = container.stackTagCompound.getInteger("Energy");
-		int energyReceived = Math.min(capacity - energy, Math.min(this.maxReceive, maxReceive));
+		int energyReceived = Math.min(Reference.CAPACITY_PYRO - energy, Math.min(Reference.MAX_RECEIVE_PYRO, maxReceive));
 
 		if (!simulate) {
 			energy += energyReceived;

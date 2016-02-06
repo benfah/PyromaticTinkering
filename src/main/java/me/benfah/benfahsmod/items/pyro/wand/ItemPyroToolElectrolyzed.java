@@ -89,12 +89,14 @@ public class ItemPyroToolElectrolyzed extends ItemPyroTool implements IEnergyCon
 	
 	@Override
 	public boolean showDurabilityBar(ItemStack stack) {
-		return !(getEnergyStored(stack) == getMaxEnergyStored(stack));
+		return true;
 	}
 	
 	@Override
 	public double getDurabilityForDisplay(ItemStack stack) {
 		return 1D - ((double)getEnergyStored(stack) / (double)getMaxEnergyStored(stack));
 	}
-
+	
+	
+	
 }

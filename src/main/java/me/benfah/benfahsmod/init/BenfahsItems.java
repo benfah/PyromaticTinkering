@@ -11,7 +11,6 @@ import me.benfah.benfahsmod.BenfahsMod;
 import me.benfah.benfahsmod.Reference;
 import me.benfah.benfahsmod.blocks.BlockTinkerTable;
 import me.benfah.benfahsmod.items.ItemPyroGem;
-import me.benfah.benfahsmod.items.ItemTinkerTable;
 import me.benfah.benfahsmod.items.ItemUpgrade;
 import me.benfah.benfahsmod.items.pyro.axe.ItemPyroAxe;
 import me.benfah.benfahsmod.items.pyro.axe.ItemPyroAxeElectrolyzed;
@@ -48,7 +47,6 @@ public class BenfahsItems {
 	public static Item pyro_axe_electrolyzed;
 	
 	public static Block tinker_table;
-	public static Item tinker_table_item;
 
 	
 	public static Item pyro_tool;
@@ -68,11 +66,10 @@ public class BenfahsItems {
 		pyro_pickaxe_electrolyzed = new ItemPyroPickaxeElectrolyzed(pyro_toolmaterial);
 		pyro_axe = new ItemPyroAxe(pyro_toolmaterial);
 		pyro_axe_electrolyzed = new ItemPyroAxeElectrolyzed(pyro_toolmaterial);
-		pyro_tool = new ItemPyroTool(pyro_toolmaterial).setCreativeTab(BenfahsMod.tabBenfah);
-		pyro_tool_electrolyzed = new ItemPyroToolElectrolyzed(pyro_toolmaterial).setCreativeTab(BenfahsMod.tabBenfah);
+		pyro_tool = new ItemPyroTool(pyro_toolmaterial);
+		pyro_tool_electrolyzed = new ItemPyroToolElectrolyzed(pyro_toolmaterial);
 
 		tinker_table = new BlockTinkerTable(Material.wood).setCreativeTab(BenfahsMod.tabBenfah);
-		tinker_table_item = new ItemTinkerTable();
 	}
 	
 	
@@ -91,7 +88,6 @@ public class BenfahsItems {
 
 		
 		GameRegistry.registerBlock(tinker_table, tinker_table.getUnlocalizedName().substring(5));
-		GameRegistry.registerItem(tinker_table_item, tinker_table_item.getUnlocalizedName().substring(5));
 	}
 	
 	

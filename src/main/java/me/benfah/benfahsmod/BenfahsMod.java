@@ -62,29 +62,10 @@ public class BenfahsMod {
 	public void init(FMLInitializationEvent e)
 	{
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GUIHandler());
-		ItemStack obsidian = new ItemStack(Blocks.obsidian);
-		ItemStack redstone = new ItemStack(Items.redstone);
-		ItemStack glass = new ItemStack(Blocks.glass_pane);
-		ItemStack netherstar = new ItemStack(Items.nether_star);
-		ItemStack pyro_sword = new ItemStack(new BenfahsItems().pyro_sword);
-		ItemStack pyro_sword_electrolyzed = new ItemStack(new BenfahsItems().pyro_sword_electrolyzed);
-
-		ItemStack pyro_gem = new ItemStack(new BenfahsItems().pyro_gem);
-		ItemStack blaze_rod = new ItemStack(Items.blaze_rod);
-		ItemStack slime_ball = new ItemStack(Items.slime_ball);
-		ItemStack gold = new ItemStack(Items.gold_ingot);
-		ItemStack sharp_orb = new ItemStack(BenfahsItems.sword_upgrade);
-		
-		
-		GameRegistry.addRecipe(sharp_orb, "GPG", "PSP", "GPG", 'G', gold, 'P', pyro_gem, 'S', slime_ball);
-		GameRegistry.addRecipe(pyro_sword, " G "," G ", " R ", 'G', pyro_gem, 'R', blaze_rod);
 		proxy.registerRenders();
         GameRegistry.registerTileEntity(TileEntityTinkerTable.class, "tileEntityTinkerTable");
 
-		
-			GameRegistry.addRecipe(pyro_sword_electrolyzed, "RGR", "GEG", "COC", 'R', redstone, 'G', pyro_gem, 'E', pyro_sword, 'O', sharp_orb, 'C', new ItemStack(Items.diamond));
-			
-		
+		Recipes.init();
 	}
 	
 	@EventHandler

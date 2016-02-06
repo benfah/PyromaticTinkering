@@ -84,15 +84,7 @@ public class ItemPyroSwordElectrolyzed extends ItemPyroSword implements IEnergyC
 		return EnumRarity.rare;
 	}
 	
-	@Override
-	public boolean showDurabilityBar(ItemStack stack) {
-		return !(getEnergyStored(stack) == getMaxEnergyStored(stack));
-	}
 	
-	@Override
-	public double getDurabilityForDisplay(ItemStack stack) {
-		return 1D - ((double)getEnergyStored(stack) / (double)getMaxEnergyStored(stack));
-	}
 	
 	@Override
 	public boolean requiresMultipleRenderPasses() {
@@ -177,7 +169,7 @@ public class ItemPyroSwordElectrolyzed extends ItemPyroSword implements IEnergyC
 			return 0;
 		}
 		int energy = container.stackTagCompound.getInteger("Energy");
-		int energyExtracted = Math.min(energy, Math.min(this.maxExtract, maxExtract));
+		int energyExtracted = Math.min(energy, Math.min(Reference.MAX_EXTRACT_PYRO, maxExtract));
 
 		if (!simulate) {
 			energy -= energyExtracted;
@@ -205,15 +197,7 @@ public class ItemPyroSwordElectrolyzed extends ItemPyroSword implements IEnergyC
 	@Override
 	public int getMaxEnergyStored(ItemStack arg0) {
 		
-		return capacity;
-	}
-
-
-	
-	@Override
-	public void registerIcons(IIconRegister i) {
-		super.registerIcons(i);
-		sword = i.registerIcon(Reference.MOD_ID + ":electrolyzed_pyro_sword");
+		return Reference.CAPACITY_PYRO;
 		
 	}
 
@@ -224,7 +208,7 @@ public class ItemPyroSwordElectrolyzed extends ItemPyroSword implements IEnergyC
 			container.stackTagCompound = new NBTTagCompound();
 		}
 		int energy = container.stackTagCompound.getInteger("Energy");
-		int energyReceived = Math.min(capacity - energy, Math.min(this.maxReceive, maxReceive));
+		int energyReceived = Math.min(Reference.CAPACITY_PYRO - energy, Math.min(Reference.MAX_RECEIVE_PYRO, maxReceive));
 
 		if (!simulate) {
 			energy += energyReceived;
@@ -233,6 +217,23 @@ public class ItemPyroSwordElectrolyzed extends ItemPyroSword implements IEnergyC
 		return energyReceived;
 	}
 	
+	@Override
+	public void registerIcons(IIconRegister i) {
+		super.registerIcons(i);
+		sword = i.registerIcon(Reference.MOD_ID + ":electrolyzed_pyro_sword");
+		
+	}
+
 	
+	
+	@Override
+	public boolean showDurabilityBar(ItemStack stack) {
+		return true;
+	}
+	
+	@Override
+	public double getDurabilityForDisplay(ItemStack stack) {
+		return 1D - ((double)getEnergyStored(stack) / (double)getMaxEnergyStored(stack));
+	}
 	
 }

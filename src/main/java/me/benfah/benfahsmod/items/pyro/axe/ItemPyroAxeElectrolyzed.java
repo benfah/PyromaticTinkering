@@ -1,6 +1,7 @@
 package me.benfah.benfahsmod.items.pyro.axe;
 
 import cofh.api.energy.IEnergyContainerItem;
+import me.benfah.benfahsmod.Reference;
 import me.benfah.benfahsmod.util.NBTHelper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
@@ -26,22 +27,7 @@ public class ItemPyroAxeElectrolyzed extends ItemPyroAxe implements IEnergyConta
 	
 	
 	
-	@Override
-	public int extractEnergy(ItemStack container, int maxExtract, boolean simulate) {
-
-		if (container.stackTagCompound == null || !container.stackTagCompound.hasKey("Energy")) {
-			return 0;
-		}
-		int energy = container.stackTagCompound.getInteger("Energy");
-		int energyExtracted = Math.min(energy, Math.min(this.maxExtract, maxExtract));
-
-		if (!simulate) {
-			energy -= energyExtracted;
-			container.stackTagCompound.setInteger("Energy", energy);
-		}
-		return energyExtracted;
-	}
-
+	
 
 	@Override
 	public float getDigSpeed(ItemStack stack, Block block, int meta) {
@@ -76,6 +62,44 @@ public class ItemPyroAxeElectrolyzed extends ItemPyroAxe implements IEnergyConta
 		
 		return super.onBlockDestroyed(stack, world, block, x, y, z, blockbreaker);
 	}
+	
+
+	
+
+
+
+	
+
+	@Override
+	public boolean showDurabilityBar(ItemStack stack) {
+		return true;
+	}
+	
+	@Override
+	public double getDurabilityForDisplay(ItemStack stack) {
+		return 1D - ((double)getEnergyStored(stack) / (double)getMaxEnergyStored(stack));
+	}
+
+	@Override
+	public int extractEnergy(ItemStack container, int maxExtract, boolean simulate) {
+
+		if (container.stackTagCompound == null || !container.stackTagCompound.hasKey("Energy")) {
+			return 0;
+		}
+		int energy = container.stackTagCompound.getInteger("Energy");
+		int energyExtracted = Math.min(energy, Math.min(Reference.MAX_EXTRACT_PYRO, maxExtract));
+
+		if (!simulate) {
+			energy -= energyExtracted;
+			container.stackTagCompound.setInteger("Energy", energy);
+		}
+		return energyExtracted;
+	}
+
+
+
+
+
 	@Override
 	public int getEnergyStored(ItemStack container) {
 		if (container.stackTagCompound == null || !container.stackTagCompound.hasKey("Energy")) {
@@ -91,21 +115,9 @@ public class ItemPyroAxeElectrolyzed extends ItemPyroAxe implements IEnergyConta
 	@Override
 	public int getMaxEnergyStored(ItemStack arg0) {
 		
-		return capacity;
+		return Reference.CAPACITY_PYRO;
+		
 	}
-
-	@Override
-	public boolean showDurabilityBar(ItemStack stack) {
-		return !(getEnergyStored(stack) == getMaxEnergyStored(stack));
-	}
-	
-	@Override
-	public double getDurabilityForDisplay(ItemStack stack) {
-		return 1D - ((double)getEnergyStored(stack) / (double)getMaxEnergyStored(stack));
-	}
-
-
-
 
 	@Override
 	public int receiveEnergy(ItemStack container, int maxReceive, boolean simulate) {
@@ -114,7 +126,7 @@ public class ItemPyroAxeElectrolyzed extends ItemPyroAxe implements IEnergyConta
 			container.stackTagCompound = new NBTTagCompound();
 		}
 		int energy = container.stackTagCompound.getInteger("Energy");
-		int energyReceived = Math.min(capacity - energy, Math.min(this.maxReceive, maxReceive));
+		int energyReceived = Math.min(Reference.CAPACITY_PYRO - energy, Math.min(Reference.MAX_RECEIVE_PYRO, maxReceive));
 
 		if (!simulate) {
 			energy += energyReceived;
@@ -122,6 +134,8 @@ public class ItemPyroAxeElectrolyzed extends ItemPyroAxe implements IEnergyConta
 		}
 		return energyReceived;
 	}
+
+
 	
 	
 }
