@@ -1,32 +1,15 @@
-# Object files
-*.o
-*.ko
-*.obj
-*.elf
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
-
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
-
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
-
-# Debug files
-*.dSYM/
+/*
+!/.gitignore
+!/.gitmodules
+!/src
+!/gradle
+!/gradlew
+!/gradlew.bat
+!/README.md
+!/License.txt
+!/build.gradle
+!/build.properties
+!/build.bat
+!/build.sh
+!/gradle.properties
+.DS_Store
